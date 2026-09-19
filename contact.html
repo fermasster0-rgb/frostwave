@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Frostwave</title>
+<meta name="description" content="Questions about sizing, shipping or your order? Write to Frostwave — and find quick answers in the FAQ.">
+<meta name="theme-color" content="#16213a">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<!-- Schriften liegen in schriften/ (Nunito, OFL-Lizenz) — schneller als Google Fonts
+     und ohne Datenübertragung an Google. -->
+<link rel="preload" href="schriften/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="schriften/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://fermasster0-rgb.github.io/frostwave/contact.html">
+<link rel="apple-touch-icon" href="bilder/touch-icon.png">
+<!-- Vorschau beim Teilen (WhatsApp, TikTok, Instagram, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Frostwave">
+<meta property="og:title" content="Contact — Frostwave">
+<meta property="og:description" content="Questions about sizing, shipping or your order? Write to Frostwave — and find quick answers in the FAQ.">
+<meta property="og:url" content="https://fermasster0-rgb.github.io/frostwave/contact.html">
+<meta property="og:image" content="https://fermasster0-rgb.github.io/frostwave/bilder/teilen.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="stil.css">
+</head>
+<body data-seite="contact">
+
+<!-- KOPF — gleich auf allen drei Seiten -->
+<div class="leiste" aria-live="polite">
+  <span id="leiste-text">Free shipping to Austria &amp; Germany</span>
+</div>
+
+<header class="kopf">
+  <div class="kopf-innen">
+    <a class="marke" href="index.html">
+      <svg class="marke-berg" viewBox="0 0 32 20" aria-hidden="true"><path d="M1.5 18.5 10 6.5l4.2 5.6L19.5 3 30.5 18.5z" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="m16.8 7.6 2.7-4.6 2.9 4.2-1.6 1.3-1.3-1.2-1.3 1.3z" fill="#fff"/></svg>
+      <span data-marke>frostwave</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="product.html">Product</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <button id="knopf-korb" class="korb-knopf" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5.5 8h13l-1.1 11.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+      </svg>
+      <span id="korb-zahl" class="korb-zahl" hidden>0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ========================================================================
+       Kontakt: Formular links, Kurzinfos rechts
+       ======================================================================== -->
+  <section class="held-bereich">
+    <div class="kontakt">
+
+      <div class="kontakt-kopf">
+        <p class="dachzeile">Contact</p>
+        <h1 class="titel">Talk to a<br><span class="titel-akzent">real human.</span></h1>
+        <p class="einleitung"><span id="antwortzeit"></span>.</p>
+      </div>
+
+      <!-- Das Formular öffnet das Mailprogramm mit fertig ausgefüllter Nachricht.
+           Funktioniert ohne Server und landet direkt in deinem Postfach. -->
+      <form id="kontakt-formular" class="kontakt-karte" novalidate>
+        <div class="feld-paar">
+          <label class="feld">
+            <span>Your name</span>
+            <input name="name" autocomplete="name" required>
+          </label>
+          <label class="feld">
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+        </div>
+        <label class="feld">
+          <span>What's it about?</span>
+          <select name="thema">
+            <option>Question before buying</option>
+            <option>My order</option>
+            <option>Return</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label class="feld">
+          <span>Order number <em>(if you have one)</em></span>
+          <input name="bestellung">
+        </label>
+        <label class="feld">
+          <span>Message</span>
+          <textarea name="nachricht" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="knopf knopf-signal knopf-breit">
+          Send message
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p id="kontakt-hinweis" class="kontakt-hinweis" aria-live="polite"></p>
+      </form>
+
+      <aside class="kontakt-info">
+        <div class="info-karte">
+          <span class="vorteil-symbol" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+          </span>
+          <div>
+            <h2>Email us directly</h2>
+            <a id="kontakt-mail" class="kontakt-mail" href="#"></a>
+          </div>
+        </div>
+        <ul class="info-liste">
+          <li><strong>🚚 Free shipping</strong><span id="info-versand"></span></li>
+          <li><strong>↩ Easy returns</strong><span id="info-rueckgabe"></span></li>
+          <li><strong>📦 Tracking</strong><span>By email as soon as it ships.</span></li>
+        </ul>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================== -->
+  <section class="abschnitt abschnitt-gletscher" id="faq-abschnitt">
+    <div class="abschnitt-innen schmal">
+      <p class="dachzeile">Quick answers</p>
+      <h2 class="abschnitt-titel">Questions?</h2>
+      <div id="faq" class="faq"></div>
+      <p class="weiter-hinweis">Ready? <a href="product.html">Pick your colour</a> — the 2nd headband is half price.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FUSS UND WARENKORB — gleich auf allen drei Seiten -->
+<footer class="fuss">
+  <div class="fuss-innen">
+    <span class="marke marke-hell" data-marke>frostwave</span>
+    <nav class="fuss-links" aria-label="Legal">
+      <a href="contact.html">Contact</a>
+      <a href="rechtliches.html#imprint">Imprint</a>
+      <a href="rechtliches.html#terms">Terms</a>
+      <a href="rechtliches.html#returns">Returns</a>
+      <a href="rechtliches.html#privacy">Privacy</a>
+      <a href="rechtliches.html#shipping">Shipping</a>
+    </nav>
+    <a id="fuss-mail" class="fuss-mail" href="#"></a>
+  </div>
+</footer>
+
+<div id="korb-schatten" class="korb-schatten" hidden></div>
+<aside id="korb" class="korb" aria-label="Cart" aria-hidden="true">
+  <div class="korb-kopf">
+    <h2>Your cart</h2>
+    <button id="korb-zu" class="korb-zu" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div id="korb-inhalt" class="korb-inhalt"></div>
+  <div id="korb-fuss" class="korb-fuss"></div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>

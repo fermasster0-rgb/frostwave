@@ -1,0 +1,1369 @@
+/* ==========================================================================
+   Pistenfunk — Aussehen
+
+   Idee: Ein klarer Wintertag. Kühles Gletscherblau als Grund, tiefes
+   Nachtblau für Schrift, und Sonnenuntergangs-Orange als einzige Signalfarbe
+   für alles, was kauft. Orange und Blau liegen sich im Farbkreis gegenüber —
+   darum springt der Knopf ins Auge und passt trotzdem dazu.
+
+   Alles ist rund: Karten, Knöpfe, Bilder. Muster aus Schneeflocken und
+   Tannenzweigen liegen ganz blass im Hintergrund, Berge trennen Abschnitte.
+
+   Farben und Schriften stehen hier oben. Wer etwas ändern will, ändert es
+   hier — der Rest der Datei verwendet nur diese Namen.
+   ========================================================================== */
+
+/* Eigene Schriftdateien (schriften/), variable Fonts: jede Stärke von 200 bis 1000 */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url("schriften/nunito-latin-wght-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url("schriften/nunito-sans-latin-wght-normal.woff2") format("woff2");
+}
+
+:root {
+  --schnee:       #f5f8fc;  /* Grund der Seite */
+  --weiss:        #ffffff;
+  --gletscher:    #e4eefa;  /* helle blaue Abschnitte */
+  --eis:          #d9e3ef;  /* Linien */
+  --nacht:        #16213a;  /* Schrift, dunkle Abschnitte */
+  --nebel:        #5f6d86;  /* Nebentext */
+  --himmel:       #3b6fd6;  /* kleine Akzente, Fokus */
+  --signal:       #ff5a36;  /* Kaufen, Rabatt — sonst nichts */
+  --signal-dunkel:#e8431f;
+  --tanne:        #2e8a63;  /* Häkchen, „live" */
+
+  --titel: "Nunito", "Arial Rounded MT Bold", "Segoe UI", system-ui, sans-serif;
+  --text:  "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+
+  --rund-gross: 28px;
+  --rund: 20px;
+  --rund-klein: 14px;
+  --schatten: 0 2px 4px rgba(22, 33, 58, .04), 0 18px 40px -18px rgba(22, 33, 58, .22);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --seite: min(1160px, 100% - 2.5rem);
+
+  /* Blasses Muster: Schneeflocke, Tannenzweig, ein paar Flocken */
+  --muster: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180' fill='none' stroke='%23dfe8f4' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M42 26v28M29.9 33l24.2 14M29.9 47l24.2-14M42 26l-4 4M42 26l4 4M42 54l-4-4M42 54l4-4'/%3E%3Cpath d='M104 150 146 108M112 142l-10-3M112 142l3 10M121 133l-11-3M121 133l3 11M130 124l-11-3M130 124l3 11M139 115l-9-3M139 115l3 9'/%3E%3Ccircle cx='132' cy='40' r='2.2' fill='%23dfe8f4' stroke='none'/%3E%3Ccircle cx='62' cy='128' r='1.8' fill='%23dfe8f4' stroke='none'/%3E%3Ccircle cx='160' cy='78' r='1.5' fill='%23dfe8f4' stroke='none'/%3E%3C/svg%3E");
+  --muster-dunkel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180' fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M42 26v28M29.9 33l24.2 14M29.9 47l24.2-14M42 26l-4 4M42 26l4 4M42 54l-4-4M42 54l4-4'/%3E%3Cpath d='M104 150 146 108M112 142l-10-3M112 142l3 10M121 133l-11-3M121 133l3 11M130 124l-11-3M130 124l3 11M139 115l-9-3M139 115l3 9'/%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--schnee);
+  color: var(--nacht);
+  font-family: var(--text);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 3px solid var(--himmel);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+h1, h2, h3, .marke, .preis, .pass-name {
+  font-family: var(--titel);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Leiste und Kopf ---------- */
+.leiste {
+  background: var(--nacht);
+  color: #e6ecf5;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+}
+#leiste-text { display: inline-block; transition: opacity .35s var(--ease), transform .35s var(--ease); }
+#leiste-text.weg { opacity: 0; transform: translateY(-6px); }
+
+.kopf {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(245, 248, 252, .9);
+  backdrop-filter: blur(12px);
+}
+.kopf-innen {
+  width: var(--seite);
+  margin-inline: auto;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--nacht);
+  text-decoration: none;
+}
+.marke-berg { width: 1.9rem; height: auto; color: var(--himmel); }
+.korb-knopf {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--weiss);
+  box-shadow: var(--schatten);
+  color: var(--nacht);
+  cursor: pointer;
+  transition: transform .25s var(--ease);
+}
+.korb-knopf:hover { transform: translateY(-2px); }
+.korb-zahl {
+  position: absolute;
+  top: -.15rem;
+  right: -.15rem;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 .35rem;
+  border-radius: 1rem;
+  background: var(--signal);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 800;
+  line-height: 1.35rem;
+  border: 2px solid var(--schnee);
+  box-sizing: content-box;
+}
+.korb-zahl.huepft { animation: huepfen .5s var(--ease); }
+@keyframes huepfen { 30% { transform: scale(1.4); } 100% { transform: scale(1); } }
+
+/* ---------- Held ---------- */
+.held-bereich {
+  position: relative;
+  background: var(--muster), var(--schnee);
+  padding-bottom: 5.5rem;
+}
+/* Bergkette als Übergang in den nächsten (gletscherblauen) Abschnitt */
+.held-bereich::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(48px, 7vw, 96px);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 96' preserveAspectRatio='none'%3E%3Cpath d='M0 96V62C90 44 150 22 230 30s130 38 210 30 140-46 230-44 150 44 240 40 150-36 250-32 170 30 280 22V96Z' fill='%23e4eefa'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+.held {
+  width: var(--seite);
+  margin-inline: auto;
+  padding-top: 1rem;
+  display: grid;
+  gap: 1.75rem;
+}
+@media (min-width: 920px) {
+  .held { grid-template-columns: 1.08fr 1fr; gap: 3.5rem; padding-top: 2rem; align-items: start; }
+  .galerie { position: sticky; top: 5.5rem; }
+}
+
+.galerie-bild {
+  margin: 0;
+  position: relative;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+}
+.galerie-bild img { width: 100%; height: 100%; object-fit: contain; transition: opacity .3s var(--ease), transform .6s var(--ease); }
+.galerie-bild img.wechselt { opacity: 0; transform: scale(.97); }
+.galerie-abzeichen {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+  background: var(--signal);
+  color: #fff;
+  font-family: var(--titel);
+  font-weight: 900;
+  font-size: .95rem;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  transform: rotate(-4deg);
+  box-shadow: 0 8px 18px -8px rgba(255, 90, 54, .8);
+}
+.galerie-bild figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  background: rgba(22, 33, 58, .78);
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+  padding: .3rem .75rem;
+  border-radius: 999px;
+}
+.galerie-leiste { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin-top: .7rem; }
+.galerie-daumen {
+  padding: 0;
+  border: 3px solid transparent;
+  border-radius: var(--rund-klein);
+  background: var(--weiss);
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: border-color .25s var(--ease), transform .25s var(--ease);
+}
+.galerie-daumen:hover { transform: translateY(-2px); }
+.galerie-daumen img { width: 100%; height: 100%; object-fit: cover; }
+.galerie-daumen[aria-current="true"] { border-color: var(--himmel); }
+
+.held-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .9rem; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: var(--gletscher);
+  color: var(--himmel);
+  font-weight: 700;
+  font-size: .82rem;
+  padding: .3rem .8rem;
+  border-radius: 999px;
+}
+.chip-heiss { background: #ffe8e1; color: var(--signal-dunkel); }
+
+.titel {
+  margin: 0;
+  font-size: clamp(2.6rem, 9vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.02;
+}
+.titel-akzent {
+  color: var(--himmel);
+  background: linear-gradient(transparent 62%, #ffd9cf 62%, #ffd9cf 90%, transparent 90%);
+  border-radius: 4px;
+}
+.einleitung { margin: 1rem 0 1.1rem; font-size: 1.08rem; color: #34425c; max-width: 34rem; }
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0 0 1.1rem;
+  background: var(--weiss);
+  border-radius: 999px;
+  padding: .4rem .9rem .4rem .7rem;
+  font-size: .9rem;
+  box-shadow: var(--schatten);
+}
+.live strong { font-weight: 800; }
+.live-punkt {
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: var(--tanne);
+  box-shadow: 0 0 0 0 rgba(46, 138, 99, .5);
+  animation: puls 2s infinite;
+}
+@keyframes puls {
+  70% { box-shadow: 0 0 0 .5rem rgba(46, 138, 99, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 138, 99, 0); }
+}
+
+/* ---------- Die Skipass-Karte ---------- */
+.pass {
+  position: relative;
+  scroll-margin-top: 5rem;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+  overflow: hidden;
+}
+.pass-kopf {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(120deg, var(--nacht), #25407a);
+  color: #fff;
+  padding: .8rem 1.3rem;
+}
+.pass-marke { font-family: var(--titel); font-weight: 900; font-size: 1.05rem; }
+.pass-saison { font-size: .78rem; font-weight: 600; color: #c3d2ec; margin-right: 2rem; }
+.pass-loch {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: -.55rem;
+  border-radius: 50%;
+  background: var(--schnee);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, .35);
+}
+.pass-koerper { padding: 1.1rem 1.3rem 0; }
+.pass-unten { padding-bottom: 1.3rem; }
+
+.pass-name { display: block; font-size: 1.55rem; font-weight: 900; line-height: 1.15; }
+.pass-untertitel { display: block; margin-top: .15rem; font-size: .9rem; color: var(--nebel); }
+
+.pass-feld { border: 0; margin: 1.1rem 0 0; padding: 0; min-width: 0; }
+/* Eine legend ignoriert das Padding ihres fieldset — mit float verhält sie sich wie ein Label */
+.pass-feld > legend { float: left; width: 100%; padding: 0; }
+.pass-feld > legend + * { clear: both; }
+.pass-label { font-size: .85rem; font-weight: 700; color: var(--nebel); margin-bottom: .5rem; }
+.pass-wert { color: var(--nacht); }
+
+.farben { display: flex; gap: .7rem; }
+.farbe {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  border: 3px solid var(--weiss);
+  box-shadow: 0 0 0 1.5px var(--eis);
+  cursor: pointer;
+  transition: box-shadow .25s var(--ease), transform .25s var(--ease);
+}
+.farbe:hover { transform: scale(1.08); }
+.farbe[aria-pressed="true"] { box-shadow: 0 0 0 2.5px var(--himmel); }
+
+.mengen { display: grid; gap: .9rem; padding-top: .2rem; }
+.menge {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: .8rem;
+  width: 100%;
+  padding: .95rem 1rem;
+  border: 2px solid var(--eis);
+  border-radius: var(--rund);
+  background: var(--weiss);
+  color: var(--nacht);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .25s var(--ease), background .25s var(--ease), transform .2s var(--ease);
+}
+.menge:hover { border-color: #b7c7dc; }
+.menge:active { transform: scale(.99); }
+.menge[aria-pressed="true"] { border-color: var(--himmel); background: #f4f8ff; }
+.menge-punkt {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid #a8b6c9;
+  display: grid;
+  place-items: center;
+  transition: border-color .25s var(--ease);
+}
+.menge-punkt::after {
+  content: "";
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: var(--himmel);
+  transform: scale(0);
+  transition: transform .3s var(--ease);
+}
+.menge[aria-pressed="true"] .menge-punkt { border-color: var(--himmel); }
+.menge[aria-pressed="true"] .menge-punkt::after { transform: scale(1); }
+.menge-name { font-weight: 800; font-family: var(--titel); font-size: 1.05rem; line-height: 1.3; }
+.menge-hinweis { display: block; font-family: var(--text); font-weight: 700; font-size: .82rem; color: var(--tanne); }
+.menge-preis { text-align: right; font-weight: 900; font-family: var(--titel); font-size: 1.1rem; line-height: 1.25; }
+.menge-preis s { display: block; font-family: var(--text); font-weight: 600; color: var(--nebel); font-size: .8rem; }
+.menge-abzeichen {
+  position: absolute;
+  top: -.75rem;
+  right: 1rem;
+  display: flex;
+  gap: .35rem;
+}
+.menge-abzeichen span {
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  background: var(--nacht);
+  color: #fff;
+}
+.menge-abzeichen span.rabatt { background: var(--signal); }
+
+/* Abreißrand zwischen Auswahl und Preis */
+.pass-perforation {
+  position: relative;
+  margin: 1.3rem 0 0;
+  border-top: 2px dashed var(--eis);
+}
+.pass-perforation::before,
+.pass-perforation::after {
+  content: "";
+  position: absolute;
+  top: -.75rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--schnee);
+}
+.pass-perforation::before { left: -.7rem; }
+.pass-perforation::after { right: -.7rem; }
+
+.pass-preis { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .7rem; }
+.preis { font-size: 2.5rem; font-weight: 900; line-height: 1; }
+.preis-vorher { color: var(--nebel); font-weight: 600; font-size: 1.05rem; }
+.preis-vorher:empty { display: none; }
+.preis-ersparnis {
+  background: #ffe8e1;
+  color: var(--signal-dunkel);
+  font-weight: 800;
+  font-size: .82rem;
+  padding: .25rem .65rem;
+  border-radius: 999px;
+}
+.preis-mwst { margin: .35rem 0 0; font-size: .82rem; color: var(--nebel); }
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 3.4rem;
+  padding: 0 1.8rem;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--titel);
+  font-size: 1.12rem;
+  font-weight: 900;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .25s var(--ease), transform .2s var(--ease), box-shadow .25s var(--ease);
+}
+.knopf:active { transform: scale(.98); }
+.knopf-signal {
+  background: var(--signal);
+  color: #fff;
+  box-shadow: 0 12px 24px -12px rgba(255, 90, 54, .9);
+}
+.knopf-signal:hover { background: var(--signal-dunkel); transform: translateY(-2px); }
+.knopf-signal svg { transition: transform .25s var(--ease); }
+.knopf-signal:hover svg { transform: translateX(3px); }
+.knopf-breit { width: 100%; margin-top: 1rem; }
+.knopf-still { background: var(--gletscher); color: var(--nacht); box-shadow: none; }
+.knopf-still:hover { background: var(--eis); }
+
+.lieferung {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  margin: .9rem 0 0;
+  font-size: .88rem;
+  color: #34425c;
+}
+.lieferung svg { color: var(--tanne); flex: none; }
+.lieferung strong { font-weight: 800; }
+
+.weihnachten {
+  margin: .7rem 0 0;
+  padding: .55rem .8rem;
+  border-radius: var(--rund-klein);
+  background: #fff4e5;
+  color: #8a4a00;
+  font-size: .88rem;
+  text-align: center;
+}
+.weihnachten strong { font-variant-numeric: tabular-nums; }
+.weihnachten-gross { margin: 0 0 1.4rem; background: rgba(255, 255, 255, .1); color: #ffd9a8; text-align: left; }
+
+.zusagen {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
+}
+.zusagen li {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: .15rem;
+  text-align: center;
+  background: var(--weiss);
+  border-radius: var(--rund);
+  padding: .7rem .4rem;
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #34425c;
+}
+.zusage-symbol { font-size: 1.2rem; }
+
+/* ---------- Abschnitte ---------- */
+.abschnitt { padding-block: 4rem; }
+.abschnitt-gletscher { background: var(--gletscher); }
+.abschnitt-weiss { background: var(--weiss); }
+.abschnitt-nacht { background: var(--muster-dunkel), var(--nacht); color: #fff; }
+.abschnitt-innen { width: var(--seite); margin-inline: auto; }
+.abschnitt-innen.schmal { max-width: 46rem; }
+
+.dachzeile {
+  margin: 0 0 .5rem;
+  color: var(--himmel);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.dachzeile-hell { color: #ffb49f; }
+.abschnitt-titel {
+  margin: 0 0 1.75rem;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 900;
+  line-height: 1.08;
+}
+.abschnitt-text { margin: -.75rem 0 1.5rem; color: #34425c; max-width: 36rem; font-size: 1.05rem; }
+.abschnitt-text-hell { color: #c9d4e6; }
+
+.vorteile { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+@media (min-width: 900px) { .vorteile { grid-template-columns: repeat(4, 1fr); } }
+.vorteil {
+  background: var(--weiss);
+  border-radius: var(--rund);
+  padding: 1.2rem 1.1rem;
+  box-shadow: var(--schatten);
+}
+.vorteil-symbol {
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--gletscher);
+  color: var(--himmel);
+  margin-bottom: .75rem;
+}
+.vorteil h3 { margin: 0 0 .25rem; font-size: 1.1rem; font-weight: 800; line-height: 1.2; }
+.vorteil p { margin: 0; font-size: .9rem; color: var(--nebel); line-height: 1.45; }
+
+.vergleich-karte {
+  margin-top: 1.5rem;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+  padding: .5rem 1.1rem;
+  overflow-x: auto;
+}
+.vergleich { width: 100%; border-collapse: collapse; }
+.vergleich th, .vergleich td { padding: .85rem .5rem; text-align: center; border-bottom: 1px solid var(--eis); }
+.vergleich tr:last-child td { border-bottom: 0; }
+.vergleich th { font-family: var(--titel); font-weight: 900; font-size: 1rem; line-height: 1.2; }
+.vergleich th.wir { color: var(--himmel); }
+.vergleich td:first-child, .vergleich th:first-child { text-align: left; font-weight: 700; }
+.haken, .kreuz {
+  display: inline-grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  font-weight: 900;
+}
+.haken { background: #dff3ea; color: var(--tanne); }
+.kreuz { background: #f1f3f7; color: #9aa6b8; }
+.vergleich .preis-zelle { font-family: var(--titel); font-weight: 900; font-size: 1.05rem; }
+.vergleich td.wir.preis-zelle { color: var(--signal-dunkel); }
+
+.schritte {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.75rem;
+  counter-reset: schritt;
+}
+@media (min-width: 640px) { .schritte { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .schritte { grid-template-columns: repeat(4, 1fr); } }
+.schritt { counter-increment: schritt; }
+.schritt img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--rund); }
+.schritt h3 { display: flex; align-items: center; gap: .55rem; margin: 1rem 0 .3rem; font-size: 1.25rem; font-weight: 900; }
+.schritt h3::before {
+  content: counter(schritt);
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: var(--gletscher);
+  color: var(--himmel);
+  font-size: .95rem;
+}
+.schritt p { margin: 0; color: #34425c; font-size: .95rem; }
+
+.geschenk { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 900px) { .geschenk { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+.sommer { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.sommer img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--rund); }
+.sommer img:first-child { transform: rotate(-2deg); }
+.sommer img:nth-child(2) { transform: rotate(2deg) translateY(1.2rem); }
+.sommer-text { grid-column: 1 / -1; margin: 1.4rem 0 0; text-align: center; color: #c9d4e6; font-size: .92rem; }
+
+.fakten { margin: 0; background: var(--weiss); border-radius: var(--rund-gross); box-shadow: var(--schatten); padding: .4rem 1.3rem; }
+.fakten div {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--eis);
+}
+.fakten div:last-child { border-bottom: 0; }
+.fakten dt { font-weight: 800; color: var(--nebel); font-size: .9rem; }
+.fakten dd { margin: 0; }
+
+.bewertungen { display: grid; gap: 1rem; }
+@media (min-width: 800px) { .bewertungen { grid-template-columns: repeat(3, 1fr); } }
+.bewertung { background: var(--schnee); border-radius: var(--rund); padding: 1.2rem; }
+.bewertung-sterne { color: #f5a623; letter-spacing: .1em; }
+.bewertung p { margin: .5rem 0; }
+.bewertung footer { font-size: .85rem; color: var(--nebel); }
+
+.faq { display: grid; gap: .6rem; }
+.faq details { background: var(--weiss); border-radius: var(--rund); padding: 0 1.2rem; }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.05rem 2.4rem 1.05rem 0;
+  font-weight: 800;
+  font-family: var(--titel);
+  font-size: 1.05rem;
+  position: relative;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-top: -.9rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gletscher);
+  color: var(--himmel);
+  font-size: 1.2rem;
+  transition: transform .3s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 1.1rem; color: #34425c; }
+
+/* ---------- Fuß ---------- */
+.fuss { background: var(--muster-dunkel), var(--nacht); color: #a9b7cf; padding-block: 2.8rem 7rem; }
+@media (min-width: 920px) { .fuss { padding-bottom: 2.8rem; } }
+.fuss-innen {
+  width: var(--seite);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.marke-hell { color: #fff; font-size: 1.4rem; }
+.fuss-links { display: flex; flex-wrap: wrap; gap: .4rem 1.3rem; }
+.fuss a { color: #d3dcec; font-size: .92rem; }
+
+/* ---------- Kaufleiste unten (Handy) ---------- */
+.kaufleiste {
+  position: fixed;
+  left: .6rem;
+  right: .6rem;
+  bottom: calc(.6rem + env(safe-area-inset-bottom));
+  z-index: 15;
+  background: var(--weiss);
+  border-radius: 999px;
+  box-shadow: 0 10px 40px -10px rgba(22, 33, 58, .45);
+  padding: .45rem .45rem .45rem 1.2rem;
+  transform: translateY(160%);
+  transition: transform .45s var(--ease);
+}
+.kaufleiste.sichtbar { transform: none; }
+.kaufleiste-innen { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+.kaufleiste-preis { display: grid; line-height: 1.2; }
+.kaufleiste-preis strong { font-family: var(--titel); font-weight: 900; font-size: 1.1rem; }
+.kaufleiste-preis span { font-size: .75rem; font-weight: 700; color: var(--signal-dunkel); }
+.kaufleiste .knopf { min-height: 2.9rem; padding: 0 1.3rem; font-size: 1rem; }
+@media (min-width: 920px) { .kaufleiste { display: none; } }
+
+/* ---------- Warenkorb ---------- */
+.korb-schatten {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(22, 33, 58, .45);
+  animation: einblenden .3s var(--ease);
+}
+@keyframes einblenden { from { opacity: 0; } }
+.korb {
+  position: fixed;
+  top: .5rem;
+  right: .5rem;
+  bottom: .5rem;
+  z-index: 31;
+  width: min(26rem, 100% - 1rem);
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(110%);
+  transition: transform .45s var(--ease);
+}
+.korb.offen { transform: none; }
+.korb-kopf { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.3rem; }
+.korb-kopf h2 { margin: 0; font-size: 1.5rem; font-weight: 900; }
+.korb-zu {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gletscher);
+  cursor: pointer;
+  color: var(--nacht);
+}
+.korb-inhalt { flex: 1; overflow-y: auto; padding: 0 1.3rem 1rem; }
+.korb-leer { color: var(--nebel); margin-top: .5rem; }
+
+.korb-zeile {
+  display: grid;
+  grid-template-columns: 4.6rem 1fr auto;
+  gap: .9rem;
+  align-items: center;
+  padding: .8rem 0;
+  border-bottom: 1px solid var(--eis);
+}
+.korb-zeile img { width: 4.6rem; height: 4.6rem; object-fit: contain; background: var(--schnee); border-radius: var(--rund-klein); }
+.korb-zeile-name { font-weight: 800; font-family: var(--titel); line-height: 1.25; }
+.korb-zeile-farbe { font-size: .85rem; color: var(--nebel); }
+.zaehler { display: inline-flex; align-items: center; margin-top: .4rem; background: var(--schnee); border-radius: 999px; }
+.zaehler button {
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--nacht);
+  border-radius: 50%;
+}
+.zaehler button:hover { background: var(--eis); }
+.zaehler span { min-width: 1.6rem; text-align: center; font-weight: 800; }
+.korb-entfernen {
+  border: 0;
+  background: none;
+  color: var(--nebel);
+  font-size: .8rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: .3rem 0;
+  align-self: start;
+}
+
+.korb-angebot {
+  margin: 1rem 0 0;
+  padding: 1rem;
+  border: 2px dashed #ffc2b3;
+  border-radius: var(--rund);
+  background: #fff7f4;
+}
+.korb-angebot strong { display: block; font-family: var(--titel); font-weight: 900; font-size: 1.05rem; }
+.korb-angebot p { margin: .2rem 0 .7rem; font-size: .88rem; color: #34425c; }
+.korb-angebot-knoepfe { display: flex; flex-wrap: wrap; gap: .5rem; }
+.korb-angebot-knoepfe button {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--signal);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  font-size: .85rem;
+  padding: .45rem .9rem;
+  cursor: pointer;
+}
+.korb-angebot-knoepfe button:hover { background: var(--signal-dunkel); }
+.korb-angebot-knoepfe i { width: .8rem; height: .8rem; border-radius: 50%; border: 2px solid #fff; }
+
+.korb-fuss { padding: 1rem 1.3rem 1.2rem; background: var(--schnee); }
+.korb-summe { display: flex; justify-content: space-between; font-size: .92rem; margin-bottom: .25rem; }
+.korb-summe-rabatt { color: var(--signal-dunkel); font-weight: 700; }
+.korb-summe-gesamt { font-family: var(--titel); font-size: 1.25rem; font-weight: 900; margin: .5rem 0 .9rem; }
+.korb-fuss .knopf { width: 100%; }
+.korb-hinweis { margin: .7rem 0 0; font-size: .85rem; color: var(--nebel); text-align: center; }
+.korb-hinweis:empty { display: none; }
+
+/* ---------- Weniger Bewegung ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Drei Seiten: Navigation, Startseite, Kontakt
+   ========================================================================== */
+
+/* Weiches Überblenden beim Wechsel zwischen den Seiten (Chrome, Edge,
+   Safari). Andere Browser wechseln einfach normal. */
+@view-transition { navigation: auto; }
+
+/* ---------- Kopf mit Navigation ----------
+   Am Handy: Logo und Korb oben, darunter die drei Knöpfe.
+   Ab Tablet: alles in einer Zeile, Navigation in der Mitte. */
+.kopf-innen {
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 1rem;
+  padding-block: .55rem .65rem;
+}
+.nav {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  justify-self: center;
+  display: flex;
+  gap: .2rem;
+  margin-top: .5rem;
+  padding: .25rem;
+  background: var(--weiss);
+  border-radius: 999px;
+  box-shadow: var(--schatten);
+}
+.nav a {
+  padding: .42rem 1.1rem;
+  border-radius: 999px;
+  font-family: var(--titel);
+  font-weight: 800;
+  font-size: .95rem;
+  color: var(--nebel);
+  text-decoration: none;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.nav a:hover { color: var(--nacht); background: var(--gletscher); }
+.nav a[aria-current="page"] { background: var(--nacht); color: #fff; }
+.korb-knopf { justify-self: end; }
+
+@media (max-width: 719px) {
+  .marke { font-size: 1.35rem; }
+  .pass, #how { scroll-margin-top: 7.5rem; }
+}
+@media (min-width: 720px) {
+  .kopf-innen { grid-template-columns: 1fr auto 1fr; height: 4.4rem; padding-block: 0; }
+  .nav { grid-column: 2; grid-row: 1; margin-top: 0; }
+  .nav a { padding-inline: 1.3rem; }
+}
+@media (min-width: 920px) {
+  .galerie { top: 6rem; }
+}
+#how { scroll-margin-top: 5rem; }
+
+/* ---------- Beim Scrollen bleibt nur die Navigation oben ----------
+   Sobald man ein Stück nach unten scrollt, scrollt der Schriftzug
+   „frostwave“ mit dem Inhalt weg. Die drei Knöpfe und der Warenkorb
+   bleiben als schwebende Pille oben kleben. Ihre Gitterplätze bleiben
+   erhalten, damit beim Ausblenden nichts springt. */
+.marke {
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+}
+.kopf { transition: background .3s var(--ease); }
+.nav, .korb-knopf { transition: background .3s var(--ease), box-shadow .3s var(--ease); }
+
+.kopf.gescrollt {
+  /* Kein harter Balken mehr, sondern ein weicher Verlauf: der Inhalt
+     verschwindet nach oben hin sanft, statt an einer Kante zu zerschneiden. */
+  background: linear-gradient(to bottom,
+              rgba(245, 248, 252, .96) 35%,
+              rgba(245, 248, 252, .72) 68%,
+              rgba(245, 248, 252, 0) 100%);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  pointer-events: none;   /* der leere Bereich lässt Klicks durch */
+}
+.kopf.gescrollt .marke {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-.4rem);
+}
+.kopf.gescrollt .nav,
+.kopf.gescrollt .korb-knopf {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, .88);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(13, 27, 48, .14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marke, .kopf, .nav, .korb-knopf { transition: none; }
+}
+
+/* ---------- Startseite ---------- */
+.held-home { align-items: center; }
+@media (min-width: 920px) {
+  .held-home { grid-template-columns: 1fr 1fr; padding-top: 3rem; align-items: center; }
+}
+.home-preis { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .8rem; margin: 0 0 1.2rem; }
+.knopf-reihe { display: flex; flex-wrap: wrap; gap: .7rem; }
+.knopf-reihe .knopf { flex: 1 1 auto; }
+@media (min-width: 560px) { .knopf-reihe .knopf { flex: 0 0 auto; } }
+
+.home-bild {
+  position: relative;
+  display: block;
+  margin-bottom: 1.8rem;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+  aspect-ratio: 5 / 4;
+}
+.home-bild > img:not(.home-bild-klein) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--rund-gross);
+  transition: transform .6s var(--ease);
+}
+.home-bild:hover > img:not(.home-bild-klein) { transform: scale(1.03); }
+.home-bild-klein {
+  position: absolute;
+  right: .8rem;
+  bottom: -1.6rem;
+  width: 34%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--rund);
+  border: 5px solid var(--weiss);
+  box-shadow: var(--schatten);
+  transform: rotate(4deg);
+}
+@media (min-width: 920px) { .home-bild-klein { right: -1rem; bottom: -2rem; } }
+
+/* ---------- Produktseite ---------- */
+h1.pass-name { margin: 0; }
+.pass-beschreibung { margin: .7rem 0 0; font-size: .93rem; color: #34425c; }
+
+.weiter-hinweis { margin: 1.6rem 0 0; text-align: center; color: var(--nebel); }
+.weiter-hinweis a { color: var(--himmel); font-weight: 700; }
+
+/* Der große Abstand unten im Fuß ist nur für die Kaufleiste am Handy da */
+.fuss { padding-bottom: 2.8rem; }
+.fuss-mit-kaufleiste { padding-bottom: 7rem; }
+@media (min-width: 920px) { .fuss-mit-kaufleiste { padding-bottom: 2.8rem; } }
+
+/* ---------- Kontaktseite ---------- */
+.kontakt {
+  width: var(--seite);
+  margin-inline: auto;
+  padding-top: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 920px) {
+  .kontakt { grid-template-columns: 1.15fr .85fr; column-gap: 3rem; padding-top: 2.5rem; align-items: start; }
+  .kontakt-kopf { grid-column: 1 / -1; }
+}
+.kontakt-kopf .einleitung { max-width: 40rem; margin-bottom: 0; }
+
+.kontakt-karte {
+  display: grid;
+  gap: 1rem;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+  padding: 1.4rem;
+}
+.feld-paar { display: grid; gap: 1rem; }
+@media (min-width: 560px) { .feld-paar { grid-template-columns: 1fr 1fr; } }
+.feld { display: grid; gap: .35rem; font-size: .85rem; font-weight: 700; color: var(--nebel); }
+.feld em { font-style: normal; font-weight: 600; color: #9aa6b8; }
+.feld input,
+.feld select,
+.feld textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--nacht);
+  background: var(--schnee);
+  border: 2px solid var(--eis);
+  border-radius: var(--rund-klein);
+  padding: .75rem .9rem;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.feld textarea { resize: vertical; min-height: 8rem; }
+.feld input:focus,
+.feld select:focus,
+.feld textarea:focus { outline: none; border-color: var(--himmel); background: var(--weiss); }
+.kontakt-karte .knopf-breit { margin-top: .2rem; }
+.kontakt-hinweis { margin: 0; font-size: .88rem; color: var(--tanne); text-align: center; }
+.kontakt-hinweis:empty { display: none; }
+.kontakt-hinweis.fehler { color: var(--signal-dunkel); }
+
+.kontakt-info { display: grid; gap: 1rem; align-content: start; }
+.info-karte {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--muster-dunkel), var(--nacht);
+  color: #fff;
+  border-radius: var(--rund-gross);
+  padding: 1.3rem;
+}
+.info-karte .vorteil-symbol { margin: 0; flex: none; background: rgba(255, 255, 255, .12); color: #fff; }
+.info-karte h2 { margin: 0; font-size: 1.15rem; font-weight: 900; }
+.kontakt-mail { color: #ffb49f; font-weight: 700; overflow-wrap: anywhere; }
+.info-liste {
+  list-style: none;
+  margin: 0;
+  padding: .3rem 1.3rem;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+}
+.info-liste li {
+  display: grid;
+  gap: .1rem;
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--eis);
+  font-size: .92rem;
+  color: #34425c;
+}
+.info-liste li:last-child { border-bottom: 0; }
+.info-liste strong { font-family: var(--titel); font-weight: 800; font-size: 1rem; color: var(--nacht); }
+
+/* ==========================================================================
+   Seit 2026-09-15: Skifoto oben, Stirnband mit Pfeil-Hinweisen, Bildbereich
+   „Made for days like this". Etwas größere Schrift, damit auch Ältere gut
+   lesen können.
+   ========================================================================== */
+body { font-size: 1.0625rem; }
+.einleitung { font-size: 1.12rem; }
+.vorteil p { font-size: .95rem; }
+.zusagen li { font-size: .84rem; }
+
+/* ---------- Skifoto oben ---------- */
+.foto-held {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: min(46rem, 94svh);
+  overflow: hidden;
+  background: var(--nacht);
+  color: #fff;
+}
+.foto-held-bild {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+}
+@media (min-width: 920px) {
+  /* Querformat gespiegelt: der Skifahrer fährt nach rechts, weg vom Text */
+  .foto-held-bild { object-position: 62% 40%; transform: scaleX(-1); }
+}
+.foto-held::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(22, 33, 58, .94) 0%, rgba(22, 33, 58, .82) 38%, rgba(22, 33, 58, .25) 68%, rgba(22, 33, 58, .05) 100%);
+}
+.foto-held-innen {
+  position: relative;
+  z-index: 1;
+  width: var(--seite);
+  margin-inline: auto;
+  padding-block: 8rem 2.5rem;
+}
+@media (min-width: 920px) {
+  .foto-held { align-items: center; min-height: 40rem; }
+  .foto-held::after {
+    background: linear-gradient(to right, rgba(22, 33, 58, .9) 0%, rgba(22, 33, 58, .7) 38%, rgba(22, 33, 58, 0) 70%);
+  }
+  .foto-held-innen { padding-block: 4rem; }
+  .foto-held-innen > * { max-width: 36rem; }
+}
+.titel-hell { color: #fff; }
+.titel-hell .titel-akzent {
+  color: #a9ccff;
+  background: none;   /* kein oranger Unterstrich im Startfoto (Wunsch 2026-09-15) */
+}
+.einleitung-hell { color: #dde6f3; }
+.foto-held .preis { color: #fff; }
+.chip-glas { background: rgba(255, 255, 255, .16); color: #fff; backdrop-filter: blur(6px); }
+.knopf-glas {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45);
+  backdrop-filter: blur(6px);
+}
+.knopf-glas:hover { background: rgba(255, 255, 255, .22); }
+
+/* ---------- Stirnband mit Pfeil-Hinweisen ---------- */
+#erklaert { scroll-margin-top: 4rem; }
+#erklaert .held { padding-top: 3.5rem; }
+#erklaert .abschnitt-text { margin: 0 0 1rem; }
+.erklaer-bild .galerie-abzeichen { top: auto; left: auto; bottom: 1rem; right: 1rem; transform: rotate(3deg); }
+
+.pfeil-hinweis {
+  --pfeil: 2.4rem;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 2;
+  width: max-content;
+  max-width: 10.5rem;
+  padding: .32rem .8rem;
+  border-radius: 1rem;
+  background: #fff;
+  color: var(--nacht);
+  border: 2px solid var(--nacht);
+  font-family: var(--titel);
+  font-weight: 800;
+  font-size: clamp(.74rem, 2.3vw, .95rem);
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 10px 20px -10px rgba(22, 33, 58, .6);
+}
+.pfeil-hinweis::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1.7rem;
+  height: var(--pfeil);
+  margin-left: -.85rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-2 -2 28 44' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%2316213a' stroke-width='6'%3E%3Cpath d='M12 38c-6-9 6-17 0-34'/%3E%3Cpath d='M6 10l6-7 6 7'/%3E%3C/g%3E%3Cg stroke='%23ffffff' stroke-width='2.6'%3E%3Cpath d='M12 38c-6-9 6-17 0-34'/%3E%3Cpath d='M6 10l6-7 6 7'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* Pfeil zeigt nach oben: Spitze bei --x/--y, Schild darunter */
+.pfeil-hinweis[data-pfeil="oben"] { transform: translate(-50%, var(--pfeil)); }
+.pfeil-hinweis[data-pfeil="oben"]::before { bottom: 100%; }
+/* Pfeil zeigt nach unten: Schild darüber */
+.pfeil-hinweis[data-pfeil="unten"] { transform: translate(-50%, calc(-100% - var(--pfeil))); }
+.pfeil-hinweis[data-pfeil="unten"]::before { top: 100%; transform: scaleY(-1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .pfeil-hinweis { animation: hinweis-rein .7s var(--ease) both; }
+  .pfeil-hinweis:nth-of-type(2) { animation-delay: .15s; }
+  .pfeil-hinweis:nth-of-type(3) { animation-delay: .3s; }
+  @keyframes hinweis-rein { from { opacity: 0; } to { opacity: 1; } }
+}
+
+/* ---------- Made for days like this ---------- */
+.momente {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: clamp(9rem, 38vw, 12rem);
+}
+@media (min-width: 800px) {
+  .momente { grid-template-columns: 1.15fr 1fr 1fr; grid-auto-rows: 15rem; gap: 1rem; }
+}
+.moment {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--rund);
+  background: var(--gletscher);
+}
+.moment-hoch { grid-row: span 2; }
+.moment img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s var(--ease);
+}
+.moment picture { display: contents; }
+.moment:hover img { transform: scale(1.04); }
+@media (max-width: 919px) { .moment-carven { object-position: 40% 60%; } }
+.moment figcaption {
+  position: absolute;
+  left: .7rem;
+  bottom: .7rem;
+  right: .7rem;
+  width: fit-content;
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .92);
+  color: var(--nacht);
+  font-family: var(--titel);
+  font-weight: 800;
+  font-size: .85rem;
+  line-height: 1.3;
+}
+.momente-knopf { margin-top: 2rem; text-align: center; }
+
+/* Handy: Foto oben frei sichtbar (Gesicht nicht hinter dem Text), Text darunter */
+@media (max-width: 919px) {
+  .foto-held { display: block; min-height: 0; }
+  .foto-held::after { display: none; }
+  .foto-held picture { position: relative; display: block; height: min(22rem, 50svh); }
+  .foto-held picture::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--nacht) 0%, rgba(22, 33, 58, .55) 22%, rgba(22, 33, 58, 0) 48%);
+  }
+  .foto-held-innen { margin-top: -3.2rem; padding-block: 0 2.5rem; }
+}
+@media (min-width: 920px) { .pfeil-hinweis { --pfeil: 3.4rem; } .pfeil-hinweis::before { width: 2.2rem; margin-left: -1.1rem; } }
+
+/* ---------- Skifoto-Band auf der Produktseite ---------- */
+.foto-band {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 24rem;
+  overflow: hidden;
+  background: var(--nacht);
+  color: #fff;
+}
+.foto-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+.foto-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(22, 33, 58, .92) 0%, rgba(22, 33, 58, .55) 45%, rgba(22, 33, 58, .05) 80%);
+}
+.foto-band-innen { position: relative; z-index: 1; width: var(--seite); margin-inline: auto; padding-block: 8rem 2.5rem; }
+.foto-band-innen .abschnitt-titel { margin-bottom: .6rem; }
+.foto-band-innen p { margin: 0 0 1.3rem; max-width: 32rem; font-size: 1.1rem; color: #dde6f3; }
+@media (min-width: 920px) {
+  .foto-band { align-items: center; min-height: 28rem; }
+  .foto-band::after { background: linear-gradient(to right, rgba(22, 33, 58, .88) 0%, rgba(22, 33, 58, .55) 40%, rgba(22, 33, 58, 0) 70%); }
+  .foto-band-innen { padding-block: 3rem; }
+}
+/* Tablet-Breite: Foto höher, sonst ist das Gesicht abgeschnitten */
+@media (min-width: 560px) and (max-width: 919px) {
+  .foto-held picture { height: 34rem; }
+  .foto-held-bild { object-position: 50% 22%; }
+}
+
+/* ==========================================================================
+   Conversion-Runde 2026-09-15: Vertrauenszeile im Startfoto, Häkchen-Listen,
+   Abschluss-Aufruf, FAQ auf der Produktseite
+   ========================================================================== */
+.held-vertrauen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.1rem;
+  margin: 1rem 0 0;
+  font-size: .9rem;
+  font-weight: 600;
+  color: #c9d4e6;
+}
+
+.haken-liste { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .45rem; }
+.haken-liste li { position: relative; padding-left: 1.9rem; font-weight: 600; line-height: 1.35; }
+.haken-liste li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: -.05rem;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #dff3ea;
+  color: var(--tanne);
+  font-size: .8rem;
+  font-weight: 900;
+}
+.kaufpunkte { margin: .9rem 0 0; font-size: .92rem; }
+
+.schluss { background: var(--gletscher); }
+.schluss-innen { display: grid; gap: 1.5rem; align-items: center; }
+.schluss-innen > img {
+  width: 100%;
+  max-width: 26rem;
+  justify-self: center;
+  background: var(--weiss);
+  border-radius: var(--rund-gross);
+  box-shadow: var(--schatten);
+}
+.schluss .abschnitt-titel { margin-bottom: 1rem; }
+@media (min-width: 860px) {
+  .schluss-innen { grid-template-columns: 1fr 1.1fr; gap: 4rem; }
+}
+
+.faq-titel { margin-top: 3.5rem; }
+
+/* Handy: Startfoto etwas flacher, damit Preis und Knopf ohne Scrollen sichtbar sind */
+@media (max-width: 559px) {
+  .foto-held picture { height: min(19rem, 40svh); }
+  .foto-held .titel { font-size: clamp(2.3rem, 11vw, 3rem); }
+  .foto-held .einleitung { margin: .7rem 0 .9rem; font-size: 1.02rem; }
+  .foto-held .home-preis { margin-bottom: .9rem; }
+  .foto-held .preis { font-size: 2.1rem; }
+  .foto-held-innen { padding-bottom: 2rem; }
+}
+/* Startseite hat unten keinen Fuß-Abstand für die Leiste gebraucht — jetzt schon */
+
+@media (max-width: 859px) { br.nur-breit { display: none; } }
+
+.erklaer-knopf { margin-top: 1.3rem; }
+
+/* Handy: in „Nothing in your ears" erst Überschrift, dann Bild, dann Knopf */
+@media (max-width: 919px) {
+  #erklaert .held-text { display: contents; }
+  #erklaert .abschnitt-titel { order: 1; margin-bottom: 0; }
+  #erklaert .erklaer-bild { order: 2; margin-bottom: 0; }
+  #erklaert .zusagen { order: 3; margin-top: 0; }
+  #erklaert .erklaer-knopf { order: 4; margin-top: 0; }
+}
+@media (max-width: 559px) {
+  .vergleich td:first-child { white-space: nowrap; font-size: .92rem; }
+  .vergleich th, .vergleich td { padding-inline: .35rem; }
+}
+.abschnitt-gletscher .vergleich-karte { margin-top: 0; }
+@media (max-width: 559px) {
+  .vergleich-karte { padding: .3rem .6rem; }
+  .vergleich td:first-child { white-space: normal; }
+  .vergleich th { font-size: .92rem; }
+}
+/* Handy: die vier Schritte kompakt als 2 × 2 */
+@media (max-width: 639px) {
+  .schritte { grid-template-columns: 1fr 1fr; gap: 1.2rem .8rem; }
+  .schritt h3 { font-size: 1rem; gap: .4rem; margin-top: .6rem; }
+  .schritt h3::before { width: 1.5rem; height: 1.5rem; font-size: .8rem; }
+  .schritt p { font-size: .85rem; line-height: 1.4; }
+}

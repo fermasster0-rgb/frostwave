@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frostwave — The Bluetooth headband for skiers and snowboarders</title>
+<meta name="description" content="A soft headband with two flat Bluetooth speakers over your ears. Music on the slopes without earbuds. 2nd headband −50%, free shipping.">
+<meta name="theme-color" content="#16213a">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<!-- Schriften liegen in schriften/ (Nunito, OFL-Lizenz) — schneller als Google Fonts
+     und ohne Datenübertragung an Google. -->
+<link rel="preload" href="schriften/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="schriften/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://fermasster0-rgb.github.io/frostwave/">
+<link rel="apple-touch-icon" href="bilder/touch-icon.png">
+<!-- Vorschau beim Teilen (WhatsApp, TikTok, Instagram, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Frostwave">
+<meta property="og:title" content="Frostwave — The Bluetooth headband for skiers and snowboarders">
+<meta property="og:description" content="A soft headband with two flat Bluetooth speakers over your ears. Music on the slopes without earbuds. 2nd headband −50%, free shipping.">
+<meta property="og:url" content="https://fermasster0-rgb.github.io/frostwave/">
+<meta property="og:image" content="https://fermasster0-rgb.github.io/frostwave/bilder/teilen.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" as="image" href="bilder/ski-lachen-800.webp" imagesrcset="bilder/ski-lachen-800.webp 800w, bilder/ski-lachen.webp 1100w" imagesizes="100vw" media="(max-width: 919px)" fetchpriority="high">
+<link rel="preload" as="image" href="bilder/ski-carven.webp" imagesrcset="bilder/ski-carven-800.webp 800w, bilder/ski-carven.webp 1800w" imagesizes="100vw" media="(min-width: 920px)" fetchpriority="high">
+<link rel="stylesheet" href="stil.css">
+</head>
+<!-- data-seite sagt app.js, welche Seite das ist: home, product oder contact -->
+<body data-seite="home">
+
+<!-- ==========================================================================
+     KOPF — steht gleich auf allen drei Seiten (index, product, contact).
+     Wer hier etwas ändert, ändert es bitte in allen drei Dateien.
+     ========================================================================== -->
+<div class="leiste" aria-live="polite">
+  <span id="leiste-text">Free shipping to Austria &amp; Germany</span>
+</div>
+
+<header class="kopf">
+  <div class="kopf-innen">
+    <a class="marke" href="index.html">
+      <svg class="marke-berg" viewBox="0 0 32 20" aria-hidden="true"><path d="M1.5 18.5 10 6.5l4.2 5.6L19.5 3 30.5 18.5z" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="m16.8 7.6 2.7-4.6 2.9 4.2-1.6 1.3-1.3-1.2-1.3 1.3z" fill="#fff"/></svg>
+      <span data-marke>frostwave</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="product.html">Product</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button id="knopf-korb" class="korb-knopf" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5.5 8h13l-1.1 11.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+      </svg>
+      <span id="korb-zahl" class="korb-zahl" hidden>0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ========================================================================
+       Oben: großes Skifoto mit der Botschaft darauf.
+       Die Fotos in bilder/ski-*.webp sind von Unsplash (freie Lizenz, auch
+       kommerziell). Die Leute darauf tragen NICHT unser Stirnband — darum
+       nie so beschriften, als ob.
+       ======================================================================== -->
+  <section class="foto-held">
+    <!-- Am Handy das Hochformat-Foto (Gesicht oben, Text unten), am großen
+         Bildschirm der Skifahrer im Querformat. -->
+    <picture>
+      <source media="(min-width: 920px)" srcset="bilder/ski-carven-800.webp 800w, bilder/ski-carven.webp 1800w" sizes="100vw" width="1800" height="1201">
+      <img class="foto-held-bild" src="bilder/ski-lachen-800.webp" srcset="bilder/ski-lachen-800.webp 800w, bilder/ski-lachen.webp 1100w" sizes="100vw" alt="Young skier laughing in the snow on a sunny day" width="1100" height="1647" fetchpriority="high">
+    </picture>
+    <div class="foto-held-innen">
+      <div class="held-chips">
+        <span class="chip chip-heiss" id="verkauft" hidden></span>
+      </div>
+      <h1 class="titel titel-hell">Music on the slopes.<br><span class="titel-akzent">No earbuds.</span></h1>
+      <!-- Kurz halten: am Handy sollen Preis und Knopf ohne Scrollen sichtbar sein. -->
+      <p class="einleitung einleitung-hell">Flat speakers in a warm headband. Fits under your helmet.</p>
+
+      <p class="home-preis">
+        <span id="home-preis" class="preis"></span>
+        <span id="home-angebot" class="preis-ersparnis"></span>
+      </p>
+
+      <div class="knopf-reihe" id="held-knoepfe">
+        <a href="product.html" class="knopf knopf-signal">
+          Get your headband
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#erklaert" class="knopf knopf-glas">See it up close</a>
+      </div>
+      <p class="held-vertrauen"><span>🚚 Free shipping</span><span>🔋 10&nbsp;h battery</span><span>🎁 Great gift</span></p>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Das Stirnband mit Hinweisen und Pfeilen („Comfortable fit ↑").
+       Position jedes Hinweises: --x / --y in Prozent vom Bild, dort sitzt die
+       Pfeilspitze. data-pfeil sagt, wohin der Pfeil zeigt (oben/unten).
+       ======================================================================== -->
+  <section class="held-bereich" id="erklaert">
+    <div class="held held-home">
+
+      <div class="held-text">
+        <h2 class="abschnitt-titel">Nothing in your ears.</h2>
+
+        <ul class="zusagen">
+          <li><span class="zusage-symbol" aria-hidden="true">🚚</span><span>Free shipping</span></li>
+          <li><span class="zusage-symbol" aria-hidden="true">↩</span><span id="zusage-rueckgabe"></span></li>
+          <li><span class="zusage-symbol" aria-hidden="true">📦</span><span>Tracking included</span></li>
+        </ul>
+
+        <div class="knopf-reihe erklaer-knopf">
+          <a href="product.html" class="knopf knopf-signal">See colours &amp; price</a>
+        </div>
+      </div>
+
+      <a class="home-bild erklaer-bild" href="product.html" aria-label="See the headband">
+        <span class="galerie-abzeichen" id="galerie-abzeichen"></span>
+        <img src="bilder/stirnband-schwarz.webp" alt="Black Bluetooth ski headband" width="800" height="640">
+        <span class="pfeil-hinweis" data-pfeil="unten" style="--x: 30%; --y: 33%">Soft &amp; warm</span>
+        <span class="pfeil-hinweis" data-pfeil="oben" style="--x: 73%; --y: 28%">Big buttons,<br>easy with gloves</span>
+        <span class="pfeil-hinweis" data-pfeil="oben" style="--x: 24%; --y: 62%">Comfortable fit</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Warum das Stirnband — Vorteile und Vergleich mit Ohrstöpseln
+       ======================================================================== -->
+  <section class="abschnitt abschnitt-gletscher">
+    <div class="abschnitt-innen">
+      <h2 class="abschnitt-titel">Better than earbuds.</h2>
+
+      <div class="vergleich-karte">
+        <table class="vergleich" id="vergleich"></table>
+      </div>
+
+      <div class="momente-knopf">
+        <a href="product.html" class="knopf knopf-signal">
+          Switch for <span id="vergleich-preis"></span>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Skifotos: Stimmung für Junge und Ältere. Bildunterschriften beschreiben
+       den Moment, nicht die Personen (die tragen nicht unser Stirnband).
+       ======================================================================== -->
+  <section class="abschnitt abschnitt-weiss">
+    <div class="abschnitt-innen">
+      <h2 class="abschnitt-titel">Made for days like this.</h2>
+
+      <div class="momente">
+        <figure class="moment moment-hoch">
+          <!-- umgekehrt zum Foto oben: am Handy der Skifahrer, am großen Bildschirm das Hochformat -->
+          <picture>
+            <source media="(min-width: 920px)" srcset="bilder/ski-lachen-800.webp" width="1100" height="1647">
+            <img class="moment-carven" src="bilder/ski-carven-800.webp" alt="Skier carving through fresh snow" loading="lazy" width="1800" height="1201">
+          </picture>
+          <figcaption>Powder days</figcaption>
+        </figure>
+        <figure class="moment">
+          <img src="bilder/ski-sprung-800.webp" srcset="bilder/ski-sprung-800.webp 800w, bilder/ski-sprung.webp 1400w" sizes="(min-width: 800px) 33vw, 50vw" alt="Skier jumping high above snowy mountains" loading="lazy" width="1400" height="1120">
+          <figcaption>Park laps</figcaption>
+        </figure>
+        <figure class="moment">
+          <img src="bilder/ski-freunde-800.webp" srcset="bilder/ski-freunde-800.webp 800w, bilder/ski-freunde.webp 1400w" sizes="(min-width: 800px) 33vw, 50vw" alt="Three friends carrying their skis through the snow" loading="lazy" width="1400" height="934">
+          <figcaption>Ski trips with friends</figcaption>
+        </figure>
+        <figure class="moment">
+          <img src="bilder/ski-piste-800.webp" srcset="bilder/ski-piste-800.webp 800w, bilder/ski-piste.webp 1400w" sizes="(min-width: 800px) 33vw, 50vw" alt="Skiers cruising down a wide sunny slope" loading="lazy" width="1400" height="935">
+          <figcaption>Long cruisy runs</figcaption>
+        </figure>
+        <figure class="moment">
+          <img src="bilder/ski-gruppe-800.webp" srcset="bilder/ski-gruppe-800.webp 800w, bilder/ski-gruppe.webp 1400w" sizes="(min-width: 800px) 33vw, 50vw" alt="Group of friends with skis and snowboards in a snowy forest" loading="lazy" width="1400" height="933">
+          <figcaption>The whole crew</figcaption>
+        </figure>
+      </div>
+
+      <div class="momente-knopf">
+        <a href="product.html" class="knopf knopf-signal">
+          Shop now
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Geschenk-Abschnitt, dunkel mit Tannenzweig-Muster
+       ======================================================================== -->
+  <section class="abschnitt abschnitt-nacht">
+    <div class="abschnitt-innen geschenk">
+      <div>
+        <h2 class="abschnitt-titel">The gift every<br>skier uses.</h2>
+        <p class="abschnitt-text abschnitt-text-hell">One size for all ages. Under €25. The 2nd is half price.</p>
+        <p id="weihnachten-gross" class="weihnachten weihnachten-gross" hidden></p>
+        <a href="product.html#pass" class="knopf knopf-signal">Get yours</a>
+      </div>
+      <div class="sommer">
+        <img src="bilder/wandern.webp" alt="Hiker wearing the headband on a rock" loading="lazy" width="488" height="488">
+        <img src="bilder/laufen.webp" alt="Runner wearing the headband" loading="lazy" width="488" height="488">
+        <p class="sommer-text">Also great for running and hiking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Erscheint erst, wenn in daten/bewertungen.json echte Einträge stehen. -->
+  <section class="abschnitt abschnitt-weiss" id="bewertungen-abschnitt" hidden>
+    <div class="abschnitt-innen">
+      <h2 class="abschnitt-titel">What riders say</h2>
+      <p id="bewertungen-schnitt" class="abschnitt-text"></p>
+      <div id="bewertungen" class="bewertungen"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Letzter Aufruf vor dem Fuß: wer bis hier scrollt, ist interessiert.
+       ======================================================================== -->
+  <section class="abschnitt schluss">
+    <div class="abschnitt-innen schluss-innen">
+      <img src="bilder/stirnband-schwarz.webp" alt="" width="800" height="640" loading="lazy">
+      <div>
+        <h2 class="abschnitt-titel">Ready for the slopes?</h2>
+        <p class="home-preis">
+          <span id="schluss-preis" class="preis"></span>
+          <span id="schluss-angebot" class="preis-ersparnis"></span>
+        </p>
+        <a href="product.html" class="knopf knopf-signal">
+          Choose your colour
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <ul class="haken-liste">
+          <li>Free shipping to AT &amp; DE</li>
+          <li>Tracking number included</li>
+          <li>One size: 56–71&nbsp;cm</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     FUSS UND WARENKORB — gleich auf allen drei Seiten.
+     ========================================================================== -->
+<footer class="fuss fuss-mit-kaufleiste">
+  <div class="fuss-innen">
+    <span class="marke marke-hell" data-marke>frostwave</span>
+    <nav class="fuss-links" aria-label="Legal">
+      <a href="contact.html">Contact</a>
+      <a href="rechtliches.html#imprint">Imprint</a>
+      <a href="rechtliches.html#terms">Terms</a>
+      <a href="rechtliches.html#returns">Returns</a>
+      <a href="rechtliches.html#privacy">Privacy</a>
+      <a href="rechtliches.html#shipping">Shipping</a>
+    </nav>
+    <a id="fuss-mail" class="fuss-mail" href="#"></a>
+  </div>
+</footer>
+
+<!-- Leiste unten am Handy, sobald die Knöpfe oben aus dem Bild gescrollt sind -->
+<div id="kaufleiste" class="kaufleiste" aria-hidden="true">
+  <div class="kaufleiste-innen">
+    <div class="kaufleiste-preis">
+      <strong id="kaufleiste-preis"></strong>
+      <span id="kaufleiste-hinweis"></span>
+    </div>
+    <a id="kaufleiste-knopf" class="knopf knopf-signal" href="product.html" tabindex="-1">Shop now</a>
+  </div>
+</div>
+
+<div id="korb-schatten" class="korb-schatten" hidden></div>
+<aside id="korb" class="korb" aria-label="Cart" aria-hidden="true">
+  <div class="korb-kopf">
+    <h2>Your cart</h2>
+    <button id="korb-zu" class="korb-zu" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div id="korb-inhalt" class="korb-inhalt"></div>
+  <div id="korb-fuss" class="korb-fuss"></div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>

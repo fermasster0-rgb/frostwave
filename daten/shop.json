@@ -1,0 +1,168 @@
+{
+  "shop": {
+    "name": "Frostwave",
+    "mail": "hello@YOUR-DOMAIN.com",
+    "antwortzeit": "We reply within 1–2 business days",
+    "versandLaender": "Austria & Germany",
+    "lieferzeitMin": 8,
+    "lieferzeitMax": 14,
+    "rueckgabeTage": 14,
+    "verkauft": 0,
+    "verkauftAnzeigenAb": 25,
+    "weihnachtenAktivAb": "11-01"
+  },
+  "produkt": {
+    "name": "Bluetooth Ski Headband",
+    "untertitel": "Bluetooth 5.2 · thick winter fabric",
+    "beschreibung": "Flat speakers inside a soft, warm headband. Nothing in your ears, nothing to lose in the snow.",
+    "varianten": [
+      {
+        "id": "black",
+        "name": "Midnight black",
+        "farbe": "#1c1f24",
+        "bild": "bilder/stirnband-schwarz.webp"
+      },
+      {
+        "id": "grey",
+        "name": "Heather grey",
+        "farbe": "#8d939b",
+        "bild": "bilder/stirnband-grau.webp"
+      }
+    ],
+    "einzelpreis": 24.99,
+    "zweitesStueckRabatt": 50,
+    "kaufpunkte": [
+      "Fits under your helmet",
+      "Up to 10 hours of music",
+      "Big buttons, easy with gloves",
+      "Washable"
+    ],
+    "galerie": [
+      {
+        "bild": "bilder/stirnband-schwarz.webp",
+        "text": "Midnight black"
+      },
+      {
+        "bild": "bilder/stirnband-grau.webp",
+        "text": "Heather grey"
+      },
+      {
+        "bild": "bilder/bedienfeld.webp",
+        "text": "Big buttons — easy with gloves on"
+      },
+      {
+        "bild": "bilder/lautsprecher-einzeln.webp",
+        "text": "Removable speakers, washable band"
+      }
+    ],
+    "vorteile": [
+      {
+        "symbol": "ohr",
+        "titel": "Warm ears",
+        "text": "Thick, soft fabric."
+      },
+      {
+        "symbol": "helm",
+        "titel": "Helmet-friendly",
+        "text": "Flat speakers, no pressure."
+      },
+      {
+        "symbol": "sturz",
+        "titel": "Stays on",
+        "text": "You fall, your music doesn't."
+      },
+      {
+        "symbol": "akku",
+        "titel": "10 hours",
+        "text": "A full ski day."
+      }
+    ],
+    "vergleich": {
+      "wir": "Frostwave",
+      "die": "Earbuds",
+      "zeilen": [
+        {
+          "was": "Stays on after a fall",
+          "wir": true,
+          "die": false
+        },
+        {
+          "was": "Warm ears",
+          "wir": true,
+          "die": false
+        },
+        {
+          "was": "Comfy under a helmet",
+          "wir": true,
+          "die": false
+        },
+        {
+          "was": "Works with gloves",
+          "wir": true,
+          "die": false
+        },
+        {
+          "was": "Price",
+          "wir": "{einzelpreis}",
+          "die": "€100+"
+        }
+      ]
+    },
+    "fakten": [
+      {
+        "was": "In the box",
+        "wert": "headband with built-in speakers and controls, USB charging cable"
+      },
+      {
+        "was": "Connection",
+        "wert": "Bluetooth 5.2, up to 10 m"
+      },
+      {
+        "was": "Battery",
+        "wert": "up to 10 hours of music"
+      },
+      {
+        "was": "Charging",
+        "wert": "about 2 hours via USB, cable included"
+      },
+      {
+        "was": "Size",
+        "wert": "one size, stretchy, fits 56–71 cm head circumference"
+      },
+      {
+        "was": "Weight",
+        "wert": "about 90 g"
+      },
+      {
+        "was": "Care",
+        "wert": "hand wash after taking out the electronics"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "frage": "Does it fit under my helmet?",
+      "antwort": "Yes. If a thin beanie fits, this fits too."
+    },
+    {
+      "frage": "How long does the battery last?",
+      "antwort": "Up to 10 hours. Under a helmet it stays warm and lasts longest."
+    },
+    {
+      "frage": "Which size do I need?",
+      "antwort": "One size. It stretches to fit 56–71 cm."
+    },
+    {
+      "frage": "Is music allowed while skiing?",
+      "antwort": "Yes. Keep it low enough to hear what's around you."
+    },
+    {
+      "frage": "When will it arrive?",
+      "antwort": "In 8–14 business days, with tracking."
+    },
+    {
+      "frage": "Can I return it?",
+      "antwort": "Yes, within 14 days of delivery."
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bluetooth Ski Headband — Frostwave</title>
+<meta name="description" content="Choose your colour: the Frostwave Bluetooth ski headband with flat speakers, up to 10 hours of music. 2nd headband −50%, free shipping.">
+<meta name="theme-color" content="#16213a">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<!-- Schriften liegen in schriften/ (Nunito, OFL-Lizenz) — schneller als Google Fonts
+     und ohne Datenübertragung an Google. -->
+<link rel="preload" href="schriften/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="schriften/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://fermasster0-rgb.github.io/frostwave/product.html">
+<link rel="apple-touch-icon" href="bilder/touch-icon.png">
+<!-- Vorschau beim Teilen (WhatsApp, TikTok, Instagram, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Frostwave">
+<meta property="og:title" content="Bluetooth Ski Headband — Frostwave">
+<meta property="og:description" content="Choose your colour: the Frostwave Bluetooth ski headband with flat speakers, up to 10 hours of music. 2nd headband −50%, free shipping.">
+<meta property="og:url" content="https://fermasster0-rgb.github.io/frostwave/product.html">
+<meta property="og:image" content="https://fermasster0-rgb.github.io/frostwave/bilder/teilen.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="stil.css">
+</head>
+<body data-seite="product">
+
+<!-- KOPF — gleich auf allen drei Seiten -->
+<div class="leiste" aria-live="polite">
+  <span id="leiste-text">Free shipping to Austria &amp; Germany</span>
+</div>
+
+<header class="kopf">
+  <div class="kopf-innen">
+    <a class="marke" href="index.html">
+      <svg class="marke-berg" viewBox="0 0 32 20" aria-hidden="true"><path d="M1.5 18.5 10 6.5l4.2 5.6L19.5 3 30.5 18.5z" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="m16.8 7.6 2.7-4.6 2.9 4.2-1.6 1.3-1.3-1.2-1.3 1.3z" fill="#fff"/></svg>
+      <span data-marke>frostwave</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="product.html" aria-current="page">Product</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button id="knopf-korb" class="korb-knopf" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5.5 8h13l-1.1 11.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+      </svg>
+      <span id="korb-zahl" class="korb-zahl" hidden>0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ========================================================================
+       Fotos + Skipass-Karte (das Kaufformular)
+       ======================================================================== -->
+  <section class="held-bereich">
+    <div class="held">
+
+      <div class="galerie">
+        <figure class="galerie-bild">
+          <span class="galerie-abzeichen" id="galerie-abzeichen"></span>
+          <img id="galerie-gross" src="bilder/stirnband-schwarz.webp" alt="" width="800" height="640">
+          <figcaption id="galerie-text"></figcaption>
+        </figure>
+        <div id="galerie-leiste" class="galerie-leiste"></div>
+      </div>
+
+      <div class="held-text">
+        <div class="held-chips">
+          <span class="chip">❄ Made for ski season</span>
+          <span class="chip chip-heiss" id="verkauft" hidden></span>
+        </div>
+
+        <p id="live" class="live" hidden>
+          <span class="live-punkt" aria-hidden="true"></span>
+          <span id="live-text"></span>
+        </p>
+
+        <form id="pass" class="pass" aria-label="Choose your headband">
+          <div class="pass-kopf">
+            <span class="pass-marke" data-marke>Frostwave</span>
+            <span class="pass-saison">Season pass 26/27</span>
+            <span class="pass-loch" aria-hidden="true"></span>
+          </div>
+
+          <div class="pass-koerper">
+            <div class="pass-produkt">
+              <h1 id="pass-name" class="pass-name"></h1>
+              <span id="pass-untertitel" class="pass-untertitel"></span>
+            </div>
+            <p id="beschreibung" class="pass-beschreibung"></p>
+            <ul id="kaufpunkte" class="haken-liste kaufpunkte"></ul>
+
+            <fieldset class="pass-feld">
+              <legend class="pass-label">Colour: <span id="farbe-name" class="pass-wert"></span></legend>
+              <div id="farben" class="farben"></div>
+            </fieldset>
+
+            <fieldset class="pass-feld">
+              <legend class="pass-label">Quantity</legend>
+              <div id="mengen" class="mengen"></div>
+            </fieldset>
+          </div>
+
+          <div class="pass-perforation" aria-hidden="true"></div>
+
+          <div class="pass-koerper pass-unten">
+            <div class="pass-preis">
+              <span id="preis" class="preis"></span>
+              <s id="preis-vorher" class="preis-vorher"></s>
+              <span id="preis-ersparnis" class="preis-ersparnis" hidden></span>
+            </div>
+            <p class="preis-mwst">Incl. VAT · free shipping</p>
+
+            <button type="submit" class="knopf knopf-signal knopf-breit">
+              Add to cart
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+
+            <p class="lieferung">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
+              <span id="lieferung-text"></span>
+            </p>
+            <p id="weihnachten" class="weihnachten" hidden></p>
+          </div>
+        </form>
+
+        <ul class="zusagen">
+          <li><span class="zusage-symbol" aria-hidden="true">🚚</span><span>Free shipping</span></li>
+          <li><span class="zusage-symbol" aria-hidden="true">↩</span><span id="zusage-rueckgabe"></span></li>
+          <li><span class="zusage-symbol" aria-hidden="true">📦</span><span>Tracking included</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Skifoto-Band: Freunde → zweites Stirnband. Foto von Unsplash, die
+       Personen tragen nicht unser Stirnband.
+       ======================================================================== -->
+  <section class="foto-band">
+    <img src="bilder/ski-piste.webp" alt="Three skiers cruising down a wide sunny slope" loading="lazy" width="1400" height="935">
+    <div class="foto-band-innen">
+      <h2 class="abschnitt-titel">Skiing with friends?</h2>
+      <p id="band-rabatt"></p>
+      <a href="#pass" class="knopf knopf-signal">Choose 2 headbands</a>
+    </div>
+  </section>
+
+  <!-- ======================================================================== -->
+  <section class="abschnitt abschnitt-gletscher" id="how">
+    <div class="abschnitt-innen">
+      <h2 class="abschnitt-titel">Unbox, pair, ride.</h2>
+      <ol class="schritte">
+        <li class="schritt">
+          <img src="bilder/bedienfeld.webp" alt="Control panel with three round buttons" loading="lazy" width="330" height="250">
+          <h3>Charge &amp; pair</h3>
+          <p>Charge for 2 hours, then pair via Bluetooth.</p>
+        </li>
+        <li class="schritt">
+          <img src="bilder/lautsprecher-herausnehmen.webp" alt="Hand adjusting a flat speaker inside the band" loading="lazy" width="468" height="340">
+          <h3>Slide into place</h3>
+          <p>Move the speakers right over your ears.</p>
+        </li>
+        <li class="schritt">
+          <img src="bilder/lautsprecher-einzeln.webp" alt="Headband with both speakers taken out" loading="lazy" width="462" height="316">
+          <h3>Hit the slopes</h3>
+          <p>Under your helmet or beanie. Gloves stay on.</p>
+        </li>
+        <li class="schritt">
+          <img src="bilder/handwaesche.webp" alt="Headband being washed under a tap" loading="lazy" width="470" height="316">
+          <h3>Wash &amp; repeat</h3>
+          <p>Take the electronics out, hand wash the band.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================================================================== -->
+  <section class="abschnitt">
+    <div class="abschnitt-innen schmal">
+      <h2 class="abschnitt-titel">What's inside</h2>
+      <dl id="fakten" class="fakten"></dl>
+
+      <h2 class="abschnitt-titel faq-titel">Questions? Answered.</h2>
+      <div id="faq" class="faq"></div>
+      <p class="weiter-hinweis">More questions? <a href="contact.html">Write us</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FUSS UND WARENKORB — gleich auf allen drei Seiten -->
+<footer class="fuss fuss-mit-kaufleiste">
+  <div class="fuss-innen">
+    <span class="marke marke-hell" data-marke>frostwave</span>
+    <nav class="fuss-links" aria-label="Legal">
+      <a href="contact.html">Contact</a>
+      <a href="rechtliches.html#imprint">Imprint</a>
+      <a href="rechtliches.html#terms">Terms</a>
+      <a href="rechtliches.html#returns">Returns</a>
+      <a href="rechtliches.html#privacy">Privacy</a>
+      <a href="rechtliches.html#shipping">Shipping</a>
+    </nav>
+    <a id="fuss-mail" class="fuss-mail" href="#"></a>
+  </div>
+</footer>
+
+<!-- Leiste unten am Handy, sobald die Skipass-Karte aus dem Bild gescrollt ist -->
+<div id="kaufleiste" class="kaufleiste" aria-hidden="true">
+  <div class="kaufleiste-innen">
+    <div class="kaufleiste-preis">
+      <strong id="kaufleiste-preis"></strong>
+      <span id="kaufleiste-hinweis"></span>
+    </div>
+    <button id="kaufleiste-knopf" class="knopf knopf-signal" tabindex="-1">Add to cart</button>
+  </div>
+</div>
+
+<div id="korb-schatten" class="korb-schatten" hidden></div>
+<aside id="korb" class="korb" aria-label="Cart" aria-hidden="true">
+  <div class="korb-kopf">
+    <h2>Your cart</h2>
+    <button id="korb-zu" class="korb-zu" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div id="korb-inhalt" class="korb-inhalt"></div>
+  <div id="korb-fuss" class="korb-fuss"></div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
